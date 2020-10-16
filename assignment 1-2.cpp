@@ -16,7 +16,7 @@ using namespace std;
 const int maxn = 100000;
 int n, num = 0;
 
-int Add(int x) {
+int add(int x) {
     int res = 0;
     while (x) {
         res += x - x / 10 * 10;
@@ -25,7 +25,7 @@ int Add(int x) {
     return res;
 }
 
-int Ten2Binary(int x) {
+int ten2Binary(int x) {
     int res = 0;
     while (x)
     {
@@ -40,7 +40,7 @@ int main() {
 
     for (int i = 1; i <= n; i++)
     {
-        int a = Add(i), b = Ten2Binary(i), c = Add(Ten2Binary(i));
+        int a = add(i), b = ten2Binary(i), c = add(ten2Binary(i));
         if (a == c)
         {
             num++;

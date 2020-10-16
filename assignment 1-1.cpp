@@ -26,6 +26,7 @@ int n, res = 0;
 vector<int> num;
 
 bool IsPalindrome(vector<int> a) {
+    if (a.size() == 1) return true;
     for (unsigned int i = 0; i < a.size(); i++)
         if (a[i] != a[a.size() - i - 1])
             return false;
