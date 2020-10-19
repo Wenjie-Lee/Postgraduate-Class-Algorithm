@@ -26,6 +26,8 @@ int n, minCount = INT32_MAX;
 vector<int> num, countList;		// num 记录输入序列，countList记录是回文序列时的操作次数
 vector<vector<int> > vecList;	// vecList记录回文序列
 
+// 判断vector是否是回文序列
+// 当vector数组只有一个元素时，认为是回文序列
 bool IsPalindrome(vector<int> a) {
 	if (a.size() == 1) return true;
 	for (unsigned int i = 0; i < a.size(); i++)
@@ -35,21 +37,25 @@ bool IsPalindrome(vector<int> a) {
 	return true;
 }
 
+// 递归函数体
 void function(vector<int> &a, int fcount) {
-	if (a.size() == 1 || IsPalindrome(a)) {
+// 当序列是回文序列时，更新最小操作次数，同时记录此时的序列和操作次数
+	if (IsPalindrome(a)) {
 		countList.push_back(fcount);
 		vecList.push_back(a);
 		if (fcount < minCount)
 			minCount = fcount;
 		return;
 	}
-
+// 循环选取相邻两个数，注意 i 最高只能取到a.size() - 2
 	for (int i = 0; i < a.size() - 1; i++)
 	{
+// 修改序列
 		int x = a[i], y = a[i+1];
 		a[i+1] = x + y;
 		a.erase(a.begin() + i);
 		function(a, fcount + 1);
+// 恢复序列
 		a[i] = y;
 		a.insert(a.begin() + i, x);
 	}
