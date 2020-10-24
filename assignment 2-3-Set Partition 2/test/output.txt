@@ -1,0 +1,22 @@
+output from: stir0.in
+6
+output from: stir1.in
+350
+output from: stir2.in
+1701
+output from: stir3.in
+266
+output from: stir4.in
+6951
+output from: stir5.in
+22827
+output from: stir6.in
+1389850
+output from: stir7.in
+1934327956
+output from: stir8.in
+469973790
+output from: stir9.in
+8.58963e+46
+output from: stir10.in
+6.69558e+58
