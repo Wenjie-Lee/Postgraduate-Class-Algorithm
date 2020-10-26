@@ -6,6 +6,7 @@
 
 using namespace std;
 
+int n;
 char a = 'A', b = 'B', c = 'C';
 // 将n个盘从A全部送到C
 // a原位置， b辅助，c目标位置
@@ -18,7 +19,7 @@ void hanoi(char a, char b, char c, int n, fstream &f) {
     hanoi(b, a, c, n - 1, f);
 }
 
-int input_hanoi(string path, string filename) {
+void input_hanoi(string path, string filename) {
     fstream file;
     string data;
     path += filename;
@@ -26,13 +27,12 @@ int input_hanoi(string path, string filename) {
     file.open(path);
     if (!file.is_open()) {
         cout << "open file failure" << endl;
-        return NULL;
+        return;
     }
     while (!file.eof())
         file >> data;
     file.close();
-    int n = atoi(data.c_str());
-    return n;
+    n = atoi(data.c_str());
 }
 
 int main() {
@@ -43,7 +43,7 @@ int main() {
         cout << "请输入文件名：" << endl;
         cin >> str;
         if (str == "END") break;
-        int n = input_hanoi(path, str);
+        input_hanoi(path, str);
         fstream file;
         file.open(path + "output.txt", ios::app | ios::out);
         file << "output from: " << str << endl;

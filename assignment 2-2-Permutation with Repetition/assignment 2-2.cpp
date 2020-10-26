@@ -1,4 +1,3 @@
-using namespace std;
 const int maxn = 510;
 int n, res, mp[30]{ 0 };    // 只有26个小写字母
 char str_input[maxn], cstr[maxn];           // 题目给定长度不超过500 
