@@ -33,8 +33,8 @@ int main() {
         sum[i][i] = num[i];
         dp[i][i] = 0;
     }
-    // 区间长度
-    for (int x = 1; x <= n; x++)
+    // 区间长度，从2开始会有合并动作
+    for (int x = 2; x <= n; x++)
     {
         // i 区间起点
         for (int i = 1; i + x <= n; i++)
@@ -49,6 +49,54 @@ int main() {
         }
     }
     
+    printf("%d", dp[1][n]);
+    return 0;
+}
+
+/*
+另一种情况：n堆石子圆形排列，首尾相接。每次选相邻的两堆合并
+    则dp(i，j)的含义就要改变为：从第i堆开始，往后合并j堆的最小花费
+    sum(i，j)的含义是从第i堆开始，往后合并j堆的石子数量
+*/
+const int maxn = 210, maxc = 0x3f3f3f3f;
+int n, num[maxn], dp[maxn][maxn];
+
+int sumnum(int i, int j) {
+    int ans = 0;
+    for (; j > 0; j--, i++)
+    {
+        if (i > n)
+            i %= n;
+        ans += num[i];
+    }
+    return ans;
+}
+
+int main() {
+    scanf("%d", &n);
+    for (int i = 1; i <= n; i++)
+        scanf("%d", &num[i]);
+
+    fill(dp[0], dp[0] + maxn * maxn, maxc);
+
+    // boundary init
+    for (int i = 1; i <= n; i++)
+    {
+        // 初始化时第二维为1时，表示仅有自己一堆
+        dp[i][1] = 0;
+    }
+    // 合并的堆数
+    for (int v = 2; v <= n; v++)
+    {
+        // i 区间起点
+        for (int i = 1; i + v <= n; i++)
+        {
+            // j表示从i起合并j堆
+            for (int k = 1; k < v; k++)
+                dp[i][v] = min(dp[i][v], dp[i][k] + dp[(i + k - 1) % n + 1][v - k] + sumnum(i, v));
+        }
+    }
+
     printf("%d", dp[1][n]);
     return 0;
 }
