@@ -1,4 +1,3 @@
-
 //#include <direct.h>q
 #include <cstdio>
 #include <cstring>
@@ -36,7 +35,7 @@ X9X 3
 :4
 */
 const char X = 'X';
-// 第二维存放的是当前数 %n 后的结果，即当前部分数字不能平分的情况，
+// 第二维存放的是当前数 %n 后的余数，即当前部分数字不能平分的情况，
 // 由于n未知，所有范围较大
 long long dp[20][10000];
 int main() {

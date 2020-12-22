@@ -8,7 +8,7 @@
     （1） 一个石头堆是没有代价的，dp[i][i]=0, sum[i][i] = num[i];
 状态转移：
     （1） i==j时，dp[i][j] = 0;
-    （2） i!=j时，dp[i][j] = min(dp前一部分石头堆，dp后一部分石头堆) + sum[i][j];
+    （2） i!=j时，dp[i][j] = min(dp[i][j], dp[i][k]+dp[k+1][j]) + sum[i][j];
         
 
 *1

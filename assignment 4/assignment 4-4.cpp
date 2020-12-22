@@ -29,10 +29,12 @@ int main() {
     // 其实p[n]没什么用，因为跳到第n个桩子就算成功了
     for (int i = 1; i <= n; i++)
         scanf("%d", &p[i]);
+
     // boundary init，n+1次跳跃是不可能的
     for (int i = 1; i <= n; i++)
         dp[i] = n + 1;
     dp[1] = 1;
+
     // 不取n，因为在前面的n-1次遍历中已经更新了dp[n]
     for (int i = 1; i < n; i++)
     {

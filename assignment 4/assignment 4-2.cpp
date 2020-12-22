@@ -12,26 +12,43 @@
 7
 */
 const int maxn = 100;
-int n, m, a[maxn], b[maxn], length = 0;
+int n, m, a[maxn], b[maxn];
 int main() {
 	scanf("%d%d", &n, &m);
 	for (int i = 0; i < n; i++)
 		scanf("%d", &a[i]);
 	sort(a, a + n);
+	// 计算各个区间之间的距离，得出最孤立的区间
+	// b 长度 n-1
 	for (int i = n - 1; i >= 1; i--)
 		b[i - 1] = a[i] - a[i - 1];
 	sort(b, b + n - 1);
-	// b 长度 n-1
-	for (int i = n - 2; i >= 0; i--)
+	/*
+		这段代码有一个bug，当两个区间距离为0时，可以用一条线段覆盖两个区间，
+		而这段代码仍然是按两个代码覆盖，虽然输出线段长度不会错，但有可能超过m<=50的限制
+	*/
+	//length += 1;		// 这里还要加上开头一个区间长度，+1
+	//for (int i = n - 2; i >= 0; i--)
+	//{
+	//	if (m > 1) {
+	//		length++;
+	//		m--;
+	//	}
+	//	else if (m == 1)
+	//		length += b[i];
+	//}
+	/*
+		改进代码:
+		初始为一条覆盖所有区间的长线段，再逐步减去各个区间的间隔，增加使用线段的条数
+	*/
+	int j = 0, num = 1;				// num记录使用了多少条线段，初始为一条覆盖所有的长线段
+	int ans = b[n - 1] - b[0] + 1;	// 初始线段长度
+	while (num < m && b[j] > 0)
 	{
-		if (m > 1) {
-			length++;
-			m--;
-		}
-		else if (m == 1)
-			length += b[i];
+		num++;
+		j++;
+		ans -= b[j];
 	}
-	length += 1;	// 上面求的是间距，这里还要加上开头一个区间长度，+1
-	printf("%d", length);
+	printf("%d", ans);
 	return 0;
 }

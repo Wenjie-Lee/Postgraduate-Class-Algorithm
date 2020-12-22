@@ -32,7 +32,7 @@
 int main() {
 	int n, res, temp;
 	int max1 = INT32_MIN, max2 = INT32_MIN, max3 = INT32_MIN;	// 三个最大正数
-	int min1 = INT32_MAX, min2 = INT32_MAX;						// 两个最小负数
+	int min1 = INT32_MAX, min2 = INT32_MAX;			// 两个最小负数
 	scanf("%d", &n);
 	for (int i = 0; i < n; i++)
 	{
