@@ -41,7 +41,7 @@ void dfs(int index, int local_time) {
         if (events[index].end > events[i].start) continue;
         local_time += events[index].end - events[index].start;
         // 只有当前的时间 + 之后所有的时间 >= 当前最长时间，才会往下走
-        if (local_time + end_time - events[index].end >= max_time)
+        if (local_time + end_time - events[index].end + 1 >= max_time)
             dfs(index + 1, local_time);
         local_time -= events[index].end - events[index].start;
     }

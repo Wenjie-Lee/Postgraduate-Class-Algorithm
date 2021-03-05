@@ -22,7 +22,7 @@ int main() {
         while (str.length() > 0 && str[0] == '0')
             str.erase(str.begin());
         int i, len = str.length();
-        for (i = 0; i <= len - 1; i++)
+        for (i = 0; i < len - 1; i++)
         {
             if (str[i + 1] < str[i])
             {
@@ -30,6 +30,8 @@ int main() {
                 break;
             }
         }
+        if (i==len-1)
+            str.erase(str.end()-1);
     }
     cout << str << endl;
     return 0;

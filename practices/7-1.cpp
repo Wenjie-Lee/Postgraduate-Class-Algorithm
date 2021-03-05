@@ -46,7 +46,7 @@ int main() {
     sort(num, num + n);
     // 先设定为第一个数
     int times = 1, max_num = num[0], max_times = 1;
-    for (int i = 1; i < n; i++)
+    for (int i = 1; i <= n; i++)
     {
         // 同数字就times+1
         if (num[i - 1] == num[i]) {
@@ -61,11 +61,6 @@ int main() {
             // 这一次的数字
             times = 1;
         }
-    }
-    // i == n 时 num[n-1]单独判断
-    if (times > max_times) {
-        max_times = times;
-        max_num = num[n-1];
     }
     cout << max_num << endl;
     return 0;

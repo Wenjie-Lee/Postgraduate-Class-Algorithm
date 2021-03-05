@@ -4,25 +4,27 @@
 求解4皇后问题
 
 解法1：把n皇后问题看作是判断n列皇后是否合法的问题，即1~n的排列问题；
-        只需要美剧1~n的所有排列，查看放置方案是否合法。
+        只需要枚举1~n的所有排列，查看放置方案是否合法。
 
 解法2：BFS方法。
 */
 const int maxn = 10;
-int n, num = 0, pos[maxn];  // pos[] 存放已经放置的皇后的对应行号
+int n, num = 0, pos[maxn];  // pos[] 存放对应列皇后的行号
 bool hashtable[maxn];
 
+// 在第index列放置皇后
 void generatePos(int index) {
     if (index > n) {
         num++;
         return;
     }
+    // 遍历横行
     for (int i = 1; i <= n; i++)
     {
         if (!hashtable[i])
         {
             bool flag = true;
-            // 遍历之前放的皇后，如果此列非法，就跳过
+            // 遍历之前列放的皇后，如果此列非法，就跳过
             for (int pre = 1; pre < index; pre++)
                 // 第index列皇后行号为循环的i，第pre列行号为pos[pre]
                 if (abs(index - pre) == abs(i - pos[pre])) {
@@ -34,7 +36,7 @@ void generatePos(int index) {
                 pos[index] = i;
                 hashtable[i] = true;
                 generatePos(index + 1); // 生成index+1列皇后
-                hashtable[i] = false;   // 递归完毕，还原第i行为未占领
+                hashtable[i] = false;   // 递归完毕，还原第i行为未放置皇后状态
             }
         }
     }

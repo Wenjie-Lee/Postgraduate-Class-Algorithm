@@ -20,7 +20,7 @@ using namespace std;
 // 3 - -                    3 - -
 // 4 4 5                    4 4 5
 // 1 - -                    1 - -
-// 6 - -                    0 - -  这个会有两天和值相同的路径
+// 6 - -                    0 - -  这个会有两条和值相同的路径
 
 const int maxn = 20;
 int n, check[maxn], root;

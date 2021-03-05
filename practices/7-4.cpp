@@ -21,6 +21,7 @@ bool cmp(request a, request b) {
 }
 
 int n, c, pos[maxn], mov;
+// 可以用优先队列替代
 vector<request> vc;
 vector<int> list;
 

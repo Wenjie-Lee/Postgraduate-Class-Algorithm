@@ -15,14 +15,14 @@ n m d
 :4
 1 3 1
 */
-const int maxn = 10;
+const int maxn = 10, inf = 99999999;
 int n, m, d, w[maxn][maxn], c[maxn][maxn];
 int num;    // 记录最优方案的个数，有可能有多个最优
 struct design {
     int weight = 0, price = 0, num = 0;
     double wpern = 0;
     vector<int> supplier;
-    bool operator<(const design &de) const {
+    bool operator<(const design& de) const {
         return wpern < de.wpern;
     }
 } opt;
@@ -39,7 +39,7 @@ void bfs() {
         de1 = q.top();
         q.pop();
         if (de1.num == n) {
-            if (opt.weight <= de1.weight) {
+            if (de1.weight <= opt.weight) {
                 opt = de1;
                 printf("solver%d:\n", ++num);
                 printf("%d\n%d", opt.weight, opt.supplier[0] + 1);
@@ -78,7 +78,9 @@ int main() {
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
             scanf("%d", &w[i][j]);
-
+    opt.num = n;
+    opt.weight = inf;
+    opt.price = inf;
     bfs();
     return 0;
 }

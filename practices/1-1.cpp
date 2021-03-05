@@ -42,17 +42,13 @@ void printList(lnode *root) {
 }
 
 node* reverse(node *root) {
-	node *p = root, *q = root->next;
-	// 链表为空 
-	if (!p) return NULL;
-	// 链表只有一个结点 
-	if (!q) return p;
+	node* p;
+	if (!root || !root->next)
+		return root;
 
-	p = reverse(q);
-	//     while(q->next != NULL) q = q->next;
-	//     q->next = p;
-	root->next->next = root;	// 将p结点链接到q结点后面
-	root->next = NULL;
+	p = ReverseList(root->next);	// 逆置root后面的结点，root->next就是逆置后的末尾
+	root->next->next = root;	// root链接到root->next后面
+	root->next = NULL;		// root末尾没有结点
 	return p;
 }
 
